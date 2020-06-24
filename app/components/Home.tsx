@@ -22,8 +22,6 @@ function constructClient<T>(Client: {
 const routeGuideClient = constructClient<RouteGuideClient>(RouteGuideClient);
 
 function connectServer() {
-  let hasConnect = false;
-
   const call = routeGuideClient.routeChat();
 
   const location = new Point();
@@ -46,7 +44,6 @@ function connectServer() {
   call.on('data', (data: RouteNote) => {
     const dataObj: RouteNote.AsObject = data.toObject();
     console.log(dataObj);
-    hasConnect = true;
   });
   call.on('end', (e: unknown) => {
     return e;
